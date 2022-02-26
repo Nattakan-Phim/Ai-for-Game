@@ -1,18 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using _AiForGame.Scripts;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDamageable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float speed;
+    public event Action<int> OnTakeHit; 
+
+    private void Update()
     {
-        
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(0, speed*Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(-speed*Time.deltaTime, 0, 0);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(0, -speed*Time.deltaTime, 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(speed*Time.deltaTime, 0, 0);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void TakeHit(int count)
     {
-        
+        OnTakeHit?.Invoke(count);
     }
 }

@@ -9,7 +9,7 @@ public class AiManager : MonoBehaviour,IDamageable
 {
     public event Action<int> OnTakeHit; 
 
-    [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private GameManager gameManager;
     [SerializeField] private WPManager wpManager;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float playerSpeed;
@@ -124,8 +124,8 @@ public class AiManager : MonoBehaviour,IDamageable
         tracker.transform.LookAt(goal.transform.position);
     }
 
-    public void TakeHit(int damage)
+    public void TakeHit(int count)
     {
-        OnTakeHit?.Invoke(damage);
+        OnTakeHit?.Invoke(count);
     }
 }
