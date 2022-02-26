@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = System.Random;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -16,14 +17,18 @@ public class PlayerScript : MonoBehaviour
     private GameObject cerrentNode;
     [SerializeField] private WPMenager wpMenager;
     private Graph m_Graph;
-    
+    private Pointter point;
+    private GameObject spawnedPoint;
+
+
+
     void Start()
     {
        // PlayerCon = GetComponent<CharacterController>();
+       point = GetComponent<Pointter>();
        InstantiateTracker();
        m_Graph = wpMenager.Graph;
        cerrentNode = wayPoint[0];
-       
     }
 
     void Update()
@@ -36,9 +41,9 @@ public class PlayerScript : MonoBehaviour
     private void InstantiateTracker()
     {
         tracker = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        DestroyImmediate(tracker.GetComponent<Collider>());
-        // tracker.GetComponent<MeshRenderer>().enabled = false;
-        tracker.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        DestroyImmediate(tracker.GetComponent<Collider>()); 
+        DestroyImmediate(tracker.GetComponent<MeshRenderer>());
+        tracker.transform.localScale = new Vector3(0f, 0, 0);
         
 
         tracker.transform.position = transform.position;
@@ -48,19 +53,20 @@ public class PlayerScript : MonoBehaviour
 
     private void NodeProgress()
     {
-        if (m_Graph.getPathLength() == 0 )
+        if (m_Graph.getPathLength() == 0 || cerrentWP == m_Graph.getPathLength())
         {
             return;
         }
         cerrentNode = m_Graph.getPathPoint(cerrentWP);
         var disrectionWP = Vector3.Distance(transform.position, cerrentNode.transform.position);
-        if (disrectionWP == 1)
+        if (disrectionWP < 1f)
         {
             cerrentWP++;
         }
 
         if (cerrentWP >= m_Graph.getPathLength()) { return; }
         goal = m_Graph.getPathPoint(cerrentWP);
+        
     }
     
     private void TrackerLookWP()
@@ -76,7 +82,7 @@ public class PlayerScript : MonoBehaviour
             speedRote = 5;
         }
         var trackerDistance = Vector3.Distance(transform.position, tracker.transform.position);
-        if (trackerDistance < overDistance || trackerDistance < 1)
+        if (trackerDistance < overDistance || trackerDistance < 1f)
         {
             return;
         }
@@ -87,9 +93,9 @@ public class PlayerScript : MonoBehaviour
     }
 
     // fine node want
-    public void FineNode(int indexWP)
+    public void FineNode(int index)
     {
-        m_Graph.AStar(cerrentNode, wayPoint[indexWP]);
+        m_Graph.AStar(cerrentNode, wayPoint[index]);
         cerrentWP++;
     }
     

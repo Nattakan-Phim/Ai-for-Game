@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,28 +9,48 @@ public class Pointter : MonoBehaviour
 {
 
     private Random _Random = new Random();
-    private int current;
+    private int current = 0;
     [SerializeField] private GameObject[] Points;
-    private GameObject spawnedPoint;
+    [SerializeField] private GameObject spawnedPoint;
     private PlayerScript player;
     
-    void Start()
+
+    private void Start()
     {
-        Random();
+         RandomSpawned();
+        // player = GetComponent<PlayerScript>();
     }
     
-    
-    private void Random()
+    public void RandomSpawned()
     {
         current = _Random.Next(Points.Length);
-        SpawnPoint();
-        player.FineNode(current);
+        Debug.Log($"current Node {current}");
+
+        // create and set position
+        Instantiate(spawnedPoint);
+        spawnedPoint.transform.position = Points[current].transform.position;
+        
+        // var distancePlayer = Vector3.Distance(player.transform.position, Points[current].transform.position);
+    }
+    
+    
+    private void Update()
+    {
+        // player.FineNode(current);
+        // Debug.Log($"current Node {current}");
+        // var distancePlayer = Vector3.Distance(spawnedPoint.transform.position, player.transform.position);
+        // if (distancePlayer < 1)
+        // {
+        //    RandomSpawned();
+        // }
+        
     }
 
-    private void SpawnPoint()
-    {
-        spawnedPoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        spawnedPoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-    }
+    // private void SpawnPoint()
+    // {
+    //     spawnedPoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+    //     spawnedPoint.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+    //     transform.position = Points[current].transform.position;
+    // }
     
 }
