@@ -11,5 +11,6 @@ public class Egg : MonoBehaviour
         var target = other.gameObject.GetComponent<IDamageable>();
         target?.TakeHit(1);
         Destroy(gameObject);
+        
     }
 }

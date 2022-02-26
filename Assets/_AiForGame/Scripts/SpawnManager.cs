@@ -11,6 +11,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private WPManager wpManager;
     [SerializeField] private GameObject egg;
     [SerializeField] private Button play;
+    [SerializeField] private Text Text;
 
     private Random _random = new Random();
     private int countEgg = 0;
@@ -40,6 +41,8 @@ public class SpawnManager : MonoBehaviour
     private void OnPlay()
     {
         isPlay = true;
+        play.GetComponent<CanvasRenderer>().Clear();
+        Text.GetComponent<CanvasRenderer>().Clear();
     }
     
     private void SpawnEgg(int point)
