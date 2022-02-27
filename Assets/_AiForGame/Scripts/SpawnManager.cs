@@ -44,7 +44,6 @@ public class SpawnManager : MonoBehaviour
         play.GetComponent<CanvasRenderer>().Clear();
         Text.GetComponent<CanvasRenderer>().Clear();
     }
-    
     private void SpawnEgg(int point)
     {
         if (point == Point)
@@ -57,7 +56,6 @@ public class SpawnManager : MonoBehaviour
         Point = point;
         aiManager.MoveTo(point);
     }
-
     private void OnTakeHit(int count)
     {
         countEgg -= 1;

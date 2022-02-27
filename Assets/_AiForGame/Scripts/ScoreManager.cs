@@ -40,6 +40,6 @@ public class ScoreManager : MonoBehaviour
 
     private void SetScoreAI(string aiScore)
     {
-        aiScoreText.text = $"Player Point: {aiScore}";
+        aiScoreText.text = $"AI Point: {aiScore}";
     }
 }

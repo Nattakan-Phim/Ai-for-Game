@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         player.OnTakeHit += OnPlayerTakeHit;
         aiManager.OnTakeHit += OnAITakeHit;
         play.onClick.AddListener(OnPlay);
+        Time.timeScale = 0f;
     }
 
     public void Update()
@@ -55,6 +56,7 @@ public class GameManager : MonoBehaviour
     private void OnPlay()
     {
         isPlay = true;
+        Time.timeScale = 1f;
     }
 
     private void SpawnEgg(int point)
