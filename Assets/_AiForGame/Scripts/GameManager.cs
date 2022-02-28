@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Random = System.Random;
 
@@ -14,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject egg;
     [SerializeField] private Button play;
     [SerializeField] private GameObject dialog;
+    [SerializeField] private TextMeshProUGUI showWin;
 
     private Random _random = new Random();
     private int countEgg = 0;
@@ -70,6 +73,7 @@ public class GameManager : MonoBehaviour
         countEgg++;
         Point = point;
         aiManager.MoveTo(point);
+        ScoreWiener();
     }
 
     private void OnPlayerTakeHit(int count)
@@ -82,5 +86,29 @@ public class GameManager : MonoBehaviour
     {
         countEgg -= 1;
         scoreManager.AIScore += 1;
+    }
+
+    private void ScoreWiener()
+    {
+        if (scoreManager.AIScore == 10 )
+        {
+            
+            showWin.text = $" AI WINNER Score {scoreManager.AIScore}";
+            StartCoroutine(WaitForMinute());
+        }
+        if (scoreManager.PlayerScore == 10)
+        {
+            
+            showWin.text = $" PLAYER WINNER Score {scoreManager.PlayerScore} ";
+            StartCoroutine(WaitForMinute());
+        }
+    }
+
+    private IEnumerator WaitForMinute()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(5);
+        SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+        Time.timeScale = 1f;
     }
 }

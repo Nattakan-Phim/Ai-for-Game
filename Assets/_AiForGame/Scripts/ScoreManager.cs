@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI playerScoreText;
     [SerializeField] private TextMeshProUGUI aiScoreText;
-
+   
     private void Start()
     {
         PlayerScore = 0;
@@ -25,17 +25,13 @@ public class ScoreManager : MonoBehaviour
     {
         SetScorePlayer(PlayerScore.ToString());
         SetScoreAI(AIScore.ToString());
-
-        if (PlayerScore == 10 || AIScore == 10)
-        {
-            SceneManager.LoadScene( SceneManager.GetActiveScene().name );
-        }
     }
 
 
     private void SetScorePlayer(string playerScore)
     {
         playerScoreText.text = $"Player Point: {playerScore}";
+
     }
 
     private void SetScoreAI(string aiScore)

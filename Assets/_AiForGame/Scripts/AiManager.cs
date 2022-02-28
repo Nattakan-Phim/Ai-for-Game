@@ -93,7 +93,7 @@ public class AiManager : MonoBehaviour,IDamageable
         {
             rotationSpeed = 5;
         }
-
+        // transform.LookAt(currentNode.transform);
         transform.Translate(0, 0, playerSpeed * Time.deltaTime);
     }
 
@@ -101,7 +101,6 @@ public class AiManager : MonoBehaviour,IDamageable
     {
         tracker = GameObject.CreatePrimitive(PrimitiveType.Cube);
         DestroyImmediate(tracker.GetComponent<Collider>());
-
         tracker.transform.position = transform.position;
         tracker.transform.rotation = transform.rotation;
 
