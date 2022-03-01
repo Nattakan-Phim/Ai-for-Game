@@ -92,14 +92,12 @@ public class GameManager : MonoBehaviour
     {
         if (scoreManager.AIScore == 10 )
         {
-            
-            showWin.text = $" AI WINNER Score {scoreManager.AIScore}";
+            showWin.text = $" AI WINNER Score {scoreManager.AIScore} \n wait 5 sec... ";
             StartCoroutine(WaitForMinute());
         }
         if (scoreManager.PlayerScore == 10)
         {
-            
-            showWin.text = $" PLAYER WINNER Score {scoreManager.PlayerScore} ";
+            showWin.text = $" PLAYER WINNER Score {scoreManager.PlayerScore} \n wait 5 sec... ";
             StartCoroutine(WaitForMinute());
         }
     }

@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e19a9032c6e9a347a77ee3eea1083fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 679119951}
   wpManager: {fileID: 1497393539}
   rotationSpeed: 100
   playerSpeed: 5

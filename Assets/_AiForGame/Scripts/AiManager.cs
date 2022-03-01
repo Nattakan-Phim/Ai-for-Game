@@ -30,7 +30,7 @@ public class AiManager : MonoBehaviour,IDamageable
         SetGraphAndWp();
     }
     
-    private void Update()
+    private void FixedUpdate()
     {
         FindPath();
     }
@@ -93,7 +93,7 @@ public class AiManager : MonoBehaviour,IDamageable
         {
             rotationSpeed = 5;
         }
-        // transform.LookAt(currentNode.transform);
+        //transform.LookAt(currentNode.transform);
         transform.Translate(0, 0, playerSpeed * Time.deltaTime);
     }
 
